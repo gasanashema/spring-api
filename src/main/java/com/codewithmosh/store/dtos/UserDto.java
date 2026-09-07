@@ -11,10 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 public class UserDto {
-    @JsonProperty("user_id")
     private Long id;
     private String name;
     private String email;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDate createdAt;
 }
