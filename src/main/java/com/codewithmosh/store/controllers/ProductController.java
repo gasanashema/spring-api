@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
@@ -22,7 +21,6 @@ public class ProductController {
 
     @GetMapping
     public List<ProductDto> getAllProducts(
-            @RequestHeader(required = false, name = "x-auth-token") String authToken,
             @RequestParam(required = false, name = "categoryId") Byte categoryId
     ) {
         List<Product> products;
@@ -36,6 +34,8 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ProductDto getProductById(@PathVariable Long id) {
-        return productRepository.findById(id).map(productMapper::toDto).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Proudct not found"));
+        return productRepository.findById(id).map(productMapper::toDto).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
     }
+
+
 }
